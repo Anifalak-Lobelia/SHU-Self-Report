@@ -66,56 +66,51 @@ DoaFakeScreenShot()  # 截图
 chrome = webdriver.Chrome()
 login_url = "https://selfreport.shu.edu.cn/ReportHistory.aspx"  # 登录网址
 chrome.get(login_url)
-time.sleep(0.5)
+time.sleep(0.3)
 chrome.find_element(by=By.ID, value="username").send_keys(username)  # 传入学号，密码
 chrome.find_element(by=By.ID, value="password").send_keys(password)
+time.sleep(0.3)
 chrome.find_element(by=By.ID, value="submit-button").click()
-time.sleep(0.5)
-chrome.find_element(by=By.ID, value="button").click()
-
-"""-------------------------------------------------------------------------------------------------------------"""
+time.sleep(0.3)
 result = chrome.find_elements(by=By.XPATH, value='//li/a')  # 通过xpath的方法找到链接
 for i in range(len(result) - 1, -1, -1):  # 从下往上找(学校规定：先填之前的，再填现在的)
     str_text = result[i].text
     if re.search(r'未填报', str_text):  # 通过正则的方式判断出最晚的、没填报的
         result[i].click()
-        time.sleep(0.5)
+        time.sleep(0.3)
         chrome.find_element(by=By.ID, value='p1_ChengNuo-inputEl-icon').click()  # 我承诺
-        time.sleep(0.5)
+        time.sleep(0.3)
         chrome.find_element(by=By.ID, value='fineui_3-inputEl-icon').click()  # 没有去过外省市
-        time.sleep(1)
-        chrome.find_element(by=By.ID, value='fineui_22-inputEl-icon').click()  # 在上海进学校
-        time.sleep(1)
-        chrome.find_element(by=By.ID, value='fineui_25-inputEl-icon').click()  # 进校校区宝山
-        time.sleep(1)
-        chrome.find_element(by=By.ID, value='fineui_29-inputEl-icon').click()  # 当晚住校且当天不离校
-        time.sleep(1)
-        chrome.find_element(by=By.ID, value='fineui_31-inputEl-icon').click()  # 所在校区：宝山校区
-        time.sleep(1)
-        chrome.find_element(by=By.ID, value='fineui_36-inputEl-icon').click()  # 不需要进出校，不申请
-        time.sleep(1)
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_23-inputEl-icon').click()  # 在上海进学校
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_26-inputEl-icon').click()  # 进校校区宝山
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_30-inputEl-icon').click()  # 当晚住校且当天不离校
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_32-inputEl-icon').click()  # 所在校区：宝山校区
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_37-inputEl-icon').click()  # 不需要进出校，不申请
+        time.sleep(0.3)
         chrome.find_element(by=By.ID, value='p1_XiangXDZ-inputEl').send_keys(Dormitory_address)  # 校内地址
-        time.sleep(1)
-
+        time.sleep(0.3)
         try:
-            # chrome.find_element(by=By.XPATH, value='//*[@id="fineui_33"]/input').send_keys(r'  这里传入行程码的绝对路径！！！看不懂算了，直接跑，大概率是能跑的   ')
-            time.sleep(1)
+            chrome.find_element(by=By.XPATH, value='//*[@id="fineui_34"]/input').send_keys('     在这里把行程码的绝对路径的地址放在这里      ')
+            time.sleep(0.3)
         except:
             pass
         else:
             pass
-
-        chrome.find_element(by=By.ID, value='fineui_40-inputEl-icon').click()  # 是否家庭地址
-        time.sleep(1)
-        chrome.find_element(by=By.ID, value='fineui_41-inputEl-icon').click()  # 近7日是否有高中低风险地区旅居史
-        time.sleep(1)
-        chrome.find_element(by=By.ID, value='fineui_45-inputEl-icon').click()  # 是否被认定为密接
-        time.sleep(1)
+        chrome.find_element(by=By.ID, value='fineui_41-inputEl-icon').click()  # 是否家庭地址
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_42-inputEl-icon').click()  # 近7日是否有高中低风险地区旅居史
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_46-inputEl-icon').click()  # 是否被认定为密接
+        time.sleep(0.3)
         chrome.find_element(by=By.ID, value="p1_ctl01_btnSubmit").click()  # 提交
-        time.sleep(0.5)
-        chrome.find_element(by=By.ID, value='fineui_53').click()  # 确认提交
-        time.sleep(0.5)
+        time.sleep(0.3)
+        chrome.find_element(by=By.ID, value='fineui_54').click()  # 确认提交
+        time.sleep(0.3)
         chrome.get(login_url)  # 回到有一堆填报的网页
-        time.sleep(0.5)
+        time.sleep(0.3)
         result = chrome.find_elements(by=By.XPATH, value='//li/a')  # 重新读取，通过xpath的方法找到链接
-"""---------------------------------------------------------------------------------------------------"""
